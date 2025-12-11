@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy 17th Birthday, My Love! 🎉</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@400;600&display=swap');
+
+        /* PERUBAHAN 1: Body tidak lagi memakai flexbox dan overflow hidden */
+        html {
+            scroll-behavior: smooth; /* Agar scroll lembut */
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 50%, #fecfef 100%);
+            /* Menghapus display: flex, justify-content, align-items, height, dan overflow */
+            margin: 0;
+            padding: 20px 0; /* Beri sedikit jarak di atas dan bawah */
+            position: relative;
+        }
+
+        /* Canvas untuk efek confetti akan ditambahkan oleh JavaScript */
+        #confetti-canvas {
+            position: fixed; /* Tetap di posisinya saat di-scroll */
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1000;
+        }
+
+        /* Animasi Hati Melayang di Background */
+        .floating-hearts {
+            position: fixed; /* Tetap di posisinya saat di-scroll */
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .floating-heart {
+            position: absolute;
+            bottom: -100px;
+            color: rgba(255, 255, 255, 0.4);
+            animation: float-up linear infinite;
+        }
+
+        @keyframes float-up {
+            to {
+                transform: translateY(-120vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* PERUBAHAN 2: Kontainer Utama tidak lagi di tengah dengan flexbox */
+        .container {
+            background-color: rgba(255, 255, 255, 0.95);
+            padding: 40px 50px;
+            border-radius: 25px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+            text-align: center;
+            max-width: 650px;
+            /* Menambahkan margin agar berada di tengah halaman */
+            margin: 40px auto; /* 40px atas/bawah, auto kiri/kanan */
+            z-index: 10;
+            animation: fadeInScale 1.5s ease-out;
+        }
+
+        @keyframes fadeInScale {
+            from {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        h1 {
+            font-family: 'Dancing Script', cursive;
+            color: #e91e63;
+            font-size: 3.5em;
+            margin-bottom: 5px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .date {
+            color: #555;
+            font-size: 1.1em;
+            margin-bottom: 25px;
+        }
+
+        .message {
+            color: #333;
+            font-size: 1.1em;
+            line-height: 1.8;
+            text-align: left;
+            margin-bottom: 30px;
+        }
+
+        .btn {
+            background: linear-gradient(135deg, #e91e63 0%, #f06292 100%);
+            color: white;
+            border: none;
+            padding: 15px 35px;
+            border-radius: 50px;
+            font-size: 1.1em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 5px 15px rgba(233, 30, 99, 0.3);
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(233, 30, 99, 0.4);
+        }
+
+        .hidden-message {
+            display: none;
+            margin-top: 30px;
+            padding: 25px;
+            background-color: #fce4ec;
+            border-left: 5px solid #e91e63;
+            border-radius: 10px;
+            animation: slideIn 0.5s ease-out;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateX(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        .signature {
+            margin-top: 30px;
+            font-style: italic;
+            color: #555;
+        }
+
+        /* Gaya untuk Audio Player (disembunyikan) */
+        #birthday-audio {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Canvas untuk efek confetti -->
+    <canvas id="confetti-canvas"></canvas>
+
+    <!-- Background Hati Melayang -->
+    <div class="floating-hearts" id="floating-hearts"></div>
+
+    <div class="container">
+        <h1>Happy 17th Birthday!</h1>
+        <p class="date">🎂 14 Desember - Hari Paling Bercahaya 🎂</p>
+
+        <div class="message">
+            <p>Hai, <strong>[Bintang Destiany Safnadewy]</strong>!</p>
+            <p>Selamat ulang tahun yaa, cantikuu! Selamat datang di usia 17, fase dimana kamu secara resmi lebih dewasa, tapi di mataku kamu tetaplah gadis kecil yang suka ngambek lucu. Hehe.</p>
+            <p>Terima kasih sudah hadir di hidupku, mewarnai hari-hariku yang tadinya hitam putih jadi penuh warna-warni (kadang ada warna merah pas kita berantem, tapi itu kan biar makin romantis). Terima kasih sudah jadi partner dalam kebaikan,dan segala hal di antaranya.</p>
+            <p>Di usia barumu ini, aku doain yang terbaik untuk kamu. Semoga semua cita-citamu tercapai, makin cantik, makin pintar, dan yang paling penting... makin sayang sama aku dan cintaa! Aku janji akan selalu ada di sampingmu, menemanimu di setiap langkah, dan jadi tempat bersandar paling nyaman.</p>
+            <p>Pokoknya, kamu uda yang terbaik bangett. Semoga di hari spesial ini kamu mendapatkan semua yang kamu inginkan. Aku sayang kamu!</p>
+        </div>
+
+        <button class="btn" onclick="triggerSurprise()">Klik Aja ini, Sayang! 💖</button>
+
+        <div id="surprise" class="hidden-message">
+            <h3>Pesan Rahasia Buat Kamu:</h3>
+            <p>
+                Tau ngga? Setiap detik bersamamu itu seperti hadiah ulang tahun yang aku dapatkan setiap hari. Kamu adalah alasan aku tersenyum tanpa sebab, dan kamu adalah jawaban dari doa-doa yang aku kirim ke langit.
+            </p>
+            <p>
+                Di usia 17 ini, semoga kita bisa makin kuat menghadapi semuanya, makin banyak mengoleksi kenangan-kenangan manis, dan semoga kita dijauhkan masalah masalah yang menguji kita, dan kita selalu bersama selamanya🤍🤍🤍
+            </p>
+            <p>
+                You're my 11:11 wish. Happy Birthday, my one and only. I love you to the moon and back.
+            </p>
+        </div>
+
+        <p class="signature">
+            With all my heart,<br>
+            <strong>[Zakki Muhammad Fadhilah]</strong> ❤️
+        </p>
+    </div>
+
+    <!-- Elemen Audio (URL lagu bisa kamu ganti) -->
+    <audio id="birthday-audio" src="https://www.bensound.com/bensound-music/bensound-love.mp3"></audio>
+
+    <!-- Library Canvas Confetti -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js"></script>
+
+    <script>
+        // --- FUNGSI UNTUK HEAT MELAYANG DI BACKGROUND ---
+        function createFloatingHeart() {
+            const heart = document.createElement('div');
+            heart.classList.add('floating-heart');
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.animationDuration = Math.random() * 3 + 5 + 's';
+            heart.style.fontSize = Math.random() * 10 + 15 + 'px';
+            heart.innerHTML = '❤️';
+            document.getElementById('floating-hearts').appendChild(heart);
+
+            setTimeout(() => {
+                heart.remove();
+            }, 8000);
+        }
+        setInterval(createFloatingHeart, 500);
+
+        // --- FUNGSI UNTUK KEJUTAN UTAMA ---
+        let surpriseTriggered = false;
+        function triggerSurprise() {
+            // Mencegah efek dipicu berkali-kali
+            if (surpriseTriggered) return;
+            surpriseTriggered = true;
+
+            // 1. Tampilkan pesan tersembunyi
+            const surprise = document.getElementById('surprise');
+            surprise.style.display = 'block';
+
+            // 2. Mainkan musik
+            const audio = document.getElementById('birthday-audio');
+            audio.play().catch(error => {
+                console.log("Autoplay dicegah oleh browser. Pengguna harus berinteraksi terlebih dahulu.");
+            });
+
+            // 3. Memicu efek confetti yang keren!
+            // Durasi efek confetti
+            const duration = 10 * 1000; // 10 detik
+            const animationEnd = Date.now() + duration;
+            const defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 1000 };
+
+            function randomInRange(min, max) {
+                return Math.random() * (max - min) + min;
+            }
+
+            const interval = setInterval(function() {
+                const timeLeft = animationEnd - Date.now();
+
+                if (timeLeft <= 0) {
+                    return clearInterval(interval);
+                }
+
+                const particleCount = 50 * (timeLeft / duration);
+                
+                // Confetti berbentuk hati dari kiri bawah
+                confetti(Object.assign({}, defaults, {
+                    particleCount,
+                    origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 },
+                    shapes: ['heart']
+                }));
+                
+                // Confetti berbentuk hati dari kanan bawah
+                confetti(Object.assign({}, defaults, {
+                    particleCount,
+                    origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 },
+                    shapes: ['heart']
+                }));
+            }, 250);
+        }
+    </script>
+
+</body>
+</html>
